@@ -20,6 +20,7 @@ namespace ConsoleBirthday
             {
                 if (character == LineEnding)
                 {
+                    CleanRow();
                     row++;
                     column = 0;
                     continue;
@@ -28,6 +29,18 @@ namespace ConsoleBirthday
                     Console.SetCursorPosition(column++, row);
                     Console.Write(character);
                 }
+            }
+        }
+
+        private static void CleanRow()
+        {
+            var (row, column) = Console.GetCursorPosition();
+            var width = Console.WindowWidth;
+
+            for (int i = column; i < width; i++)
+            {
+                Console.SetCursorPosition(i, row);
+                Console.Write(string.Empty);
             }
         }
 
