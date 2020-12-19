@@ -12,7 +12,6 @@ namespace ConsoleBirthday
             var frameCounter = 0;
             var frameCount = AsciiArt.BirthdayCake.Length;
             var drawableFrames = DrawingExtensions.ConvertFrames(AsciiArt.BirthdayCake);
-            Console.SetWindowSize(70, 40);
             Console.Clear();
             Console.CursorVisible = false;
 
