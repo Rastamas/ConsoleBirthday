@@ -12,6 +12,8 @@ namespace ConsoleBirthday
             var frameCounter = 0;
             var frameCount = AsciiArt.BirthdayCake.Length;
             var drawableFrames = DrawingExtensions.ConvertFrames(AsciiArt.BirthdayCake);
+            Console.BackgroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.SetWindowPosition(0, 0);
             Console.SetWindowSize(70, 52);
             Console.Clear();
