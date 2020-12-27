@@ -25,7 +25,15 @@ namespace ConsoleBirthday
                     continue;
                 } else
                 {
-                    Console.SetCursorPosition(column++, row);
+                    try
+                    {
+                        Console.SetCursorPosition(column++, row);
+                    }
+                    catch
+                    {
+                        Console.Clear();
+                        return;
+                    }
                     Console.Write(character);
                 }
             }

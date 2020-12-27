@@ -12,24 +12,41 @@ namespace ConsoleBirthday
             var frameCounter = 0;
             var frameCount = AsciiArt.BirthdayCake.Length;
             var drawableFrames = DrawingExtensions.ConvertFrames(AsciiArt.BirthdayCake);
-            Console.BackgroundColor = ConsoleColor.Yellow;
-            Console.ForegroundColor = ConsoleColor.DarkMagenta;
-            Console.SetWindowPosition(0, 0);
-            Console.SetWindowSize(70, 52);
-            Console.Clear();
-            Console.CursorVisible = false;
 
-            do
+            var savedBackgroundColor = Console.BackgroundColor;
+            var savedForegroundColor = Console.ForegroundColor;
+
+            try
             {
-                DrawingExtensions.WriteFrame(drawableFrames[frameCounter]);
-
-                if (++frameCounter == frameCount)
+                Console.BackgroundColor = ConsoleColor.Yellow;
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.Title = "Boldog Szüetésnapot!";
+                try
                 {
-                    frameCounter = 0;
+                    Console.SetWindowPosition(0, 3);
+                    Console.SetWindowSize(80, Console.LargestWindowHeight);
                 }
+                catch { }
+                Console.Clear();
+                Console.CursorVisible = false;
 
-                await Task.Delay(1000 / FrameRatePerSecond);
-            } while (true);
+                do
+                {
+                    DrawingExtensions.WriteFrame(drawableFrames[frameCounter]);
+
+                    if (++frameCounter == frameCount)
+                    {
+                        frameCounter = 0;
+                    }
+
+                    await Task.Delay(1000 / FrameRatePerSecond);
+                } while (true);
+            }
+            finally
+            {
+                Console.BackgroundColor = savedBackgroundColor;
+                Console.ForegroundColor = savedForegroundColor;
+            }
         }
     }
 }
